@@ -3,17 +3,27 @@ class System(object):
         self.customer = 0
         self.arrival_time = 0
         self.servers = servers
+        self.log = [['Customer #',
+                         'Random Digit',
+                         'Interarrival Time',
+                         'Arrival Time',
+                         "Server's Name",
+                         'Random Digit',
+                         'Service Time',
+                         'Time Service Begins',
+                         'Time Customer Wait in Queue',
+                         'Time Service Ends',
+                         'Time Customer Spend in the System',
+                         'Idle Time of Server']]
         
-    def car_arrival(self, random_digit_car, random_digit_service):
+    def service(self, random_digit_car, random_digit_service):
         interarrival_time = self.get_interarrival_time(random_digit_car)
         
         if self.customer != 0:
             self.arrival_time += interarrival_time
             
-        self.service(random_digit_service)      
-            
-    def service(self, random_digit_service):
         self.customer += 1
+        
         servers = self.servers
         server = None
         if servers[0].get_time_service_ends() <= self.arrival_time:
@@ -32,16 +42,28 @@ class System(object):
         time_customer_spends_in_system = time_service_ends - self.arrival_time
         idle_time = 0 if self.customer == 0 else time_service_begin - old_time_service_ends
 
-        server.add_log(
-            (self.customer,
+        self.add_log(
+            [self.customer,
+             random_digit_car,
+             interarrival_time,
+             self.arrival_time,
+             server.get_name(),
+             random_digit_service,
+             service_time,
              time_service_begin,
              time_customer_wait_in_queue,
              time_service_ends,
              time_customer_spends_in_system,
-             idle_time)
+             idle_time]
         )
 
         server.set_time_service_ends(time_service_ends)
+
+    def add_log(self, new_log):
+        self.log.append(new_log)
+
+    def get_log(self):           
+        return self.log
         
     def get_interarrival_time(self, random_digit_car):
         if random_digit_car >= 1 and random_digit_car <= 25:

@@ -2,7 +2,6 @@ class Server(object):
     def __init__(self, name):
         self.name = name
         self.time_service_ends = 0
-        self.service_log = []
 
     def get_service_time(self, random_digit):
         pass
@@ -13,15 +12,8 @@ class Server(object):
     def set_time_service_ends(self, tse):
         self.time_service_ends = tse
 
-    def add_log(self, log):
-        self.service_log.append(log)
-
-    def print_log(self):
-        print("LOG SERVICE: " + self.name)
-        print(" Customer # | Time Service Begins | Time Customer wait in Queue | Time Service Ends | Time Customer Spends in the System | Idle Time of Server ")
-        print("------------+---------------------+-----------------------------+-------------------+------------------------------------+---------------------")
-        for log in self.service_log:
-            print(" {:>10} | {:>19} | {:>27} | {:>17} | {:>34} | {:>19} ".format(log[0], log[1], log[2], log[3], log[4], log[5]))
+    def get_name(self):
+        return self.name
 
         
 class Ali(Server):
