@@ -6,4 +6,4 @@
 
 Mensimulasikan antrian pada restoran drive-in yang memiliki dua car-hops, yaitu Ali dan Badu.
 
-Jalankan file `main.py`, lalu panggil `main(n)`, di mana `n` adalah jumlah mobil yang datang.
+Jalankan file `main.py`, lalu panggil `simulate(n)`, di mana `n` adalah jumlah mobil yang datang. Program akan men-generate file `simulasi_antrian.csv` yang menyimpan log simulasi.
